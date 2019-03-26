@@ -81,11 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-<<<<<<< HEAD
-                    Laravel
-=======
                     Promajna
->>>>>>> origin/master
                 </div>
 
                 <div class="links">
