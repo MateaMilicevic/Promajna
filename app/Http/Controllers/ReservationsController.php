@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use Illuminate\Http\Request;
+use Calendar;
 
 class ReservationsController extends Controller
 {
@@ -14,10 +15,9 @@ class ReservationsController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::all();
 
-        return view('/reservations', compact('reservations'));
-    }
+        }
+
 
     /**
      * Show the form for creating a new resource.

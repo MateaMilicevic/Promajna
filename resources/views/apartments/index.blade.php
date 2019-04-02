@@ -1,4 +1,4 @@
-@extends('apartments.layout')
+@extends('layout')
 
 
 @section('content')
@@ -20,4 +20,6 @@
         @endforeach
     </ol>
 </div>
+
+
 @endsection

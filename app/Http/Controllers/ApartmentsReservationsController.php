@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Apartment;
+use App\ApartmentReservations;
 use Illuminate\Http\Request;
+use App\Apartment;
+use App\Reservation;
 
-class ApartmentsController extends Controller
+class ApartmentsReservationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,7 @@ class ApartmentsController extends Controller
      */
     public function index()
     {
-        $apartment = Apartment::all();
-        return view('apartments.index')->withApartments($apartment);
+        //
     }
 
     /**
@@ -25,7 +26,7 @@ class ApartmentsController extends Controller
      */
     public function create()
     {
-        return view('apartments.create');
+        //
     }
 
     /**
@@ -34,33 +35,38 @@ class ApartmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Apartment $apartment)
     {
-        Apartment::create(
-        [
-            'name' =>  $request->name       ]
-        );
-        return redirect('/apartments');
+
+        Reservation::create([
+
+        'apartment_id' => $apartment->id,
+        'starts_at' => request('starts_at'),
+        'ends_at' => request('ends_at')
+        ]);
+        // $apartment->AddReservation(request(['starts_at', 'ends_at']));
+
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Apartment  $apartment
+     * @param  \App\ApartmentReservations  $apartmentReservations
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartment $apartment)
+    public function show(ApartmentReservations $apartmentReservations)
     {
-        return view('/apartments.show', compact('apartment'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Apartment  $apartment
+     * @param  \App\ApartmentReservations  $apartmentReservations
      * @return \Illuminate\Http\Response
      */
-    public function edit(Apartment $apartment)
+    public function edit(ApartmentReservations $apartmentReservations)
     {
         //
     }
@@ -69,10 +75,10 @@ class ApartmentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Apartment  $apartment
+     * @param  \App\ApartmentReservations  $apartmentReservations
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apartment)
+    public function update(Request $request, ApartmentReservations $apartmentReservations)
     {
         //
     }
@@ -80,12 +86,11 @@ class ApartmentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Apartment  $apartment
+     * @param  \App\ApartmentReservations  $apartmentReservations
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Apartment $apartment)
+    public function destroy(ApartmentReservations $apartmentReservations)
     {
         //
     }
-
 }

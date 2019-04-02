@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Route::resource('apartments', 'ApartmentsController');
 Route::resource('reservations', 'ReservationsController');
+Route::post('/apartments/{apartment}/reservations', 'ApartmentsReservationsController@store');
