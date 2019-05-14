@@ -16,4 +16,8 @@ Route::get('/', function () {
 });
 Route::resource('apartments', 'ApartmentsController');
 Route::resource('reservations', 'ReservationsController');
+Route::get('/apartments/{apartment}/reservations', 'ApartmentsReservationsController@show');
+Route::get('/apartments/{reservation}/reservations/edit', 'ApartmentsReservationsController@edit');
 Route::post('/apartments/{apartment}/reservations', 'ApartmentsReservationsController@store');
+Route::get('/apartments/{apartment}/reservations/create/', 'ApartmentsReservationsController@create');
+Route::get('calendar/{apartment}', 'ApartmentsReservationsController@calender');

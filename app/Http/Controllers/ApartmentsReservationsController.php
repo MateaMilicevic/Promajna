@@ -6,6 +6,7 @@ use App\ApartmentReservations;
 use Illuminate\Http\Request;
 use App\Apartment;
 use App\Reservation;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 class ApartmentsReservationsController extends Controller
 {
@@ -24,9 +25,9 @@ class ApartmentsReservationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Apartment $apartment)
     {
-        //
+        return view('/reservation.create', compact('apartment'));
     }
 
     /**
@@ -41,8 +42,12 @@ class ApartmentsReservationsController extends Controller
         Reservation::create([
 
         'apartment_id' => $apartment->id,
+        'title'=>request('title'),
+        'contact'=>request('contact'),
+        'number_of_people'=>request('number_of_people'),
         'starts_at' => request('starts_at'),
-        'ends_at' => request('ends_at')
+        'ends_at' => request('ends_at'),
+        'color' => request('color'),
         ]);
         // $apartment->AddReservation(request(['starts_at', 'ends_at']));
 
@@ -55,9 +60,10 @@ class ApartmentsReservationsController extends Controller
      * @param  \App\ApartmentReservations  $apartmentReservations
      * @return \Illuminate\Http\Response
      */
-    public function show(ApartmentReservations $apartmentReservations)
+    public function show(Apartment $apartment)
     {
-        //
+        $reservations = Reservation::where('apartment_id', $apartment->id)->get();
+        return view('reservation.show', compact('reservations', 'apartment'));
     }
 
     /**
@@ -66,9 +72,11 @@ class ApartmentsReservationsController extends Controller
      * @param  \App\ApartmentReservations  $apartmentReservations
      * @return \Illuminate\Http\Response
      */
-    public function edit(ApartmentReservations $apartmentReservations)
+    public function edit(Reservation $reservation)
     {
-        //
+        $apartment = Apartment::where('id', $reservation->apartment_id)->first();
+
+        return view('reservation.edit', compact('apartment', 'reservation'));
     }
 
     /**
@@ -93,4 +101,33 @@ class ApartmentsReservationsController extends Controller
     {
         //
     }
+
+    public function calender(Apartment $apartment)
+            {
+                $events = [];
+                $data = Reservation::where('apartment_id', $apartment->id)->get();
+                if($data->count())
+                 {
+                    foreach ($data as $key => $value)
+                    {
+                        $events[] = Calendar::event(
+                            $value->title,
+                            true,
+                            new \DateTime($value->starts_at),
+                            new \DateTime($value->ends_at.'+1 day'),
+                            null,
+
+                         [
+                             'color' => $value->color,
+                             'textColor' => 'white',
+                             'font-size' => '18px'
+
+                         ]
+
+                        );
+                    }
+                }
+                $calendar = Calendar::addEvents($events);
+                return view('/apartments.show', compact('calendar', 'apartment'));
+            }
 }

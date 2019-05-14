@@ -14,6 +14,7 @@
 </div>
 
 <button type="submit"> Potvrdite </button>
+<a class="btn btn-info" href="/apartments" >Natrag</a>
 
 </form>
 

@@ -13,7 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
   </head>
   <body>
-      <form method="post" action="/apartments/{{ $apartment->id}}/reservations">
+      <form method="post" action="/reservations/{{$reservation->id}}">
+        @method('PATCH')
         @csrf
         <div class="row">
           <div class="col-md-4"></div>
@@ -24,42 +25,42 @@
               </div>
               <br>
             <label for="Title">Naslov:</label>
-            <input type="text" class="form-control" name="title" required>
+            <input type="text" class="form-control" name="title" value="{{$reservation->title}}" >
           </div>
         </div>
         <div class="row">
                 <div class="col-md-4"></div>
                 <div class="form-group col-md-4">
                   <label for="Title">Kontakt:</label>
-                  <input type="text" class="form-control" name="contact" required>
+                  <input type="text" class="form-control" name="contact" value="{{$reservation->contact}}" >
                 </div>
               </div>
               <div class="row">
                     <div class="col-md-4"></div>
                     <div class="form-group col-md-4">
                       <label for="Title">Broj osoba:</label>
-                      <input type="text" class="form-control" name="number_of_people" required>
+                      <input type="text" class="form-control" name="number_of_people" value="{{$reservation->number_of_people}}" >
                     </div>
                   </div>
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
             <strong> Datum dolaska : </strong>
-            <input class="date form-control"  type="text" id="startdate" name="starts_at" required>
+            <input class="date form-control"  type="text" id="startdate" name="starts_at" value="{{$reservation->starts_at}}" >
          </div>
         </div>
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
             <strong> Datum odlaska : </strong>
-            <input class="date form-control"  type="text" id="enddate" name="ends_at" required>
+            <input class="date form-control"  type="text" id="enddate" name="ends_at" value="{{$reservation->ends_at}}" >
          </div>
         </div>
         <div class="row">
                 <div class="col-md-4"></div>
                 <div class="form-group col-md-4">
                   <strong> Izaberi boju : </strong>
-                  <input class="date form-control"  type="color" id="color" name="color" required>
+                  <input class="date form-control"  type="color" id="color" name="color" value="{{$reservation->color}}" >
                </div>
               </div>
         <div class="row">

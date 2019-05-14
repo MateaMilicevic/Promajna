@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use Illuminate\Http\Request;
-use Calendar;
 
 class ReservationsController extends Controller
 {
@@ -15,7 +14,7 @@ class ReservationsController extends Controller
      */
     public function index()
     {
-
+        return view('reservation.index');
         }
 
 
@@ -77,7 +76,8 @@ class ReservationsController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $reservation->update(request(['title', 'contact', 'number_of_people', 'starts_at', 'ends_at', 'color']));
+        return back();
     }
 
     /**
@@ -88,6 +88,8 @@ class ReservationsController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return back();
     }
+
 }
