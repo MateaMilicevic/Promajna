@@ -87,4 +87,5 @@ class ApartmentsController extends Controller
     {
         //
     }
+
 }

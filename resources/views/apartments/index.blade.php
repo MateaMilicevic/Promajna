@@ -1,4 +1,4 @@
-@extends('apartments.layout')
+@extends('layout')
 
 
 @section('content')
@@ -14,10 +14,13 @@
 
 
 
-        <li> <a href="/apartments/{{ $apartment->id}}">{{ $apartment->name }} </a></li>
+        <li> <a href="/calendar/{{ $apartment->id}}">{{ $apartment->name }} </a></li>
 
 
         @endforeach
+        <a class="btn btn-info" href="/apartments/create" >Novi apartman</a>
     </ol>
 </div>
+
+
 @endsection

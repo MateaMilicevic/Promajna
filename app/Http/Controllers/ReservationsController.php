@@ -14,10 +14,9 @@ class ReservationsController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::all();
+        return view('reservation.index');
+        }
 
-        return view('/reservations', compact('reservations'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -77,7 +76,8 @@ class ReservationsController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $reservation->update(request(['title', 'contact', 'number_of_people', 'starts_at', 'ends_at', 'color']));
+        return back();
     }
 
     /**
@@ -88,6 +88,8 @@ class ReservationsController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return back();
     }
+
 }

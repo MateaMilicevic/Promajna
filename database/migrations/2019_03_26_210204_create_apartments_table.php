@@ -16,7 +16,7 @@ class CreateApartmentsTable extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedInteger('user_id');
+            $table->Integer('user_id')->default(1);
             $table->timestamps();
         });
     }
