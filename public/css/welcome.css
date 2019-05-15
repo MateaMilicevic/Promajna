@@ -1,0 +1,61 @@
+
+.content {
+    margin: 0!important;
+    padding: 0!important;
+
+}
+.container-fluid {
+    margin: 0!important;
+    padding: 0!important;
+}
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.row {
+  margin: 0!important;
+}
+
+#myNavbar{
+  min-height: 50px;
+  background: #a7adb3 !important;
+  opacity: 0.8;
+  padding: 0!important;
+  transition: .5s ease;
+}
+
+.navbar-toggler{
+  outline: none !important;
+  border: none !important;
+  margin-top: 6px!important;
+}
+
+#navbarResponsive > ul {
+  min-height: 50px;
+  min-width: 0px;
+}
+.dropdown-item{
+    color: black;
+}
+.nav-link {
+  color: rgb(10, 0, 0)!important;
+  cursor: pointer;
+  text-align: center;
+  line-height: 50px;
+
+  padding: 0 15px !important;
+}
+
+.nav-item:hover{
+  background: rgba(255, 255, 255, 0.3)!important;
+}
+
+.title {
+    font-size: 84px;
+}
+
