@@ -119,15 +119,19 @@ class ApartmentsReservationsController extends Controller
 
                          [
                              'color' => $value->color,
-                             'textColor' => 'white',
-                             'font-size' => '18px'
+
+                             'contentheight' => 100
 
                          ]
 
                         );
                     }
                 }
-                $calendar = Calendar::addEvents($events);
+                $calendar = Calendar::addEvents($events)->setCallbacks([
+                    'height' => 400,
+                    'width' => 400
+
+                        ]);
                 return view('/apartments.show', compact('calendar', 'apartment'));
             }
 }
